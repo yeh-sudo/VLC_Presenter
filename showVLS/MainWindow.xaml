@@ -1,0 +1,76 @@
+﻿<Window x:Class="showVLS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:showVLS"
+        xmlns:viewModel="clr-namespace:showVLS.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <Border Background="#272537">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="VLS Presenter"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="15, 0, 0, 0"
+                       Foreground="White"
+                       FontSize="22"
+                       FontFamily="Fonts/#Poppins"/>
+
+            <StackPanel Grid.Row="1">
+                
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Cursor="Hand"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="History"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Cursor="Hand"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding HistroyViewCommand}"/>
+                
+            </StackPanel>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="5"
+                            Content="{Binding CurrentView}"/>
+            <Button x:Name="QuitButton"
+                    Grid.Row="2"
+                    Content="QUIT"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    BorderThickness="0"
+                    FontSize="14"
+                    Cursor="Hand"
+                    Style="{StaticResource QuitButtonTheme}"
+                    Click="QuitButton_Click"/>
+        </Grid>
+    </Border>
+</Window>
