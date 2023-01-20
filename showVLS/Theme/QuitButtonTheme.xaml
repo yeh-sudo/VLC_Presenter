@@ -1,39 +1,41 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style BasedOn="{StaticResource {x:Type Button}}"
-           TargetType="{x:Type Button}"
-           x:Key="QuitButtonTheme">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style
+        x:Key="QuitButtonTheme"
+        BasedOn="{StaticResource {x:Type Button}}"
+        TargetType="{x:Type Button}">
         <Style.Setters>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch"
-                              Background="{TemplateBinding Background}">
+                        <Grid
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Background="{TemplateBinding Background}">
 
-                            <TextBlock Text="{TemplateBinding Property=Content}"
-                                       VerticalAlignment="Center"
-                                       Foreground="White"
-                                       Margin="50, 0, 0, 0"
-                                       FontFamily="Fonts/#Poppins"/>
+                            <TextBlock
+                                Margin="50,0,0,0"
+                                VerticalAlignment="Center"
+                                FontFamily="Fonts/#Poppins"
+                                Foreground="White"
+                                Text="{TemplateBinding Property=Content}" />
 
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
 
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
 
         </Style.Setters>
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#353360"/>
+                <Setter Property="Background" Value="#353360" />
             </Trigger>
 
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#353380"/>
+                <Setter Property="Background" Value="#353380" />
             </Trigger>
         </Style.Triggers>
     </Style>

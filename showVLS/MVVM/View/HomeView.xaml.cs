@@ -29,6 +29,9 @@ namespace showVLS.MVVM.View {
 
         private void ShowButton_Click(object sender, RoutedEventArgs e) {
             SearchBoxText = SearchBox.Text;
+            if (SearchBoxText == "") {
+                return;
+            }
             GlobalClass tmp = new GlobalClass();
             tmp.History = SearchBoxText;
             MainViewModel.HistoryList.Add(tmp);
