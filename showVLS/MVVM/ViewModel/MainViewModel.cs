@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,8 @@ using showVLS.Core;
 
 namespace showVLS.MVVM.ViewModel {
     internal class MainViewModel : ObservableObject {
+
+        public static ObservableCollection<GlobalClass> HistoryList = new ObservableCollection<GlobalClass>();
 
         public RelayCommand HomeViewCommand { get; set; }
 

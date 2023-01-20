@@ -1,4 +1,6 @@
-﻿using System;
+﻿using showVLS.Core;
+using showVLS.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +20,18 @@ namespace showVLS.MVVM.View {
     /// HomeView.xaml 的互動邏輯
     /// </summary>
     public partial class HomeView : UserControl {
+
+        private string SearchBoxText;
+
         public HomeView() {
             InitializeComponent();
+        }
+
+        private void ShowButton_Click(object sender, RoutedEventArgs e) {
+            SearchBoxText = SearchBox.Text;
+            GlobalClass tmp = new GlobalClass();
+            tmp.History = SearchBoxText;
+            MainViewModel.HistoryList.Add(tmp);
         }
     }
 }

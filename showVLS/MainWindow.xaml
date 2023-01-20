@@ -61,6 +61,7 @@
                             Grid.Column="1"
                             Margin="5"
                             Content="{Binding CurrentView}"/>
+            
             <Button x:Name="QuitButton"
                     Grid.Row="2"
                     Content="QUIT"

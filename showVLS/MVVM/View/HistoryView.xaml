@@ -7,7 +7,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="History is here"
-                   Foreground="White"/>
+        <ListView Margin="40, 20, 20, 20"
+                  x:Name="HistoryListView"
+                  BorderThickness="0"
+                  Background="Transparent"
+                  Foreground="White"
+                  FontSize="18"
+                  FontFamily="Fonts/#Poppins">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding History}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="40"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </UserControl>

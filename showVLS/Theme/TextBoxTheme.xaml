@@ -11,13 +11,13 @@
                         <Grid>
                             <Rectangle StrokeThickness="1"/>
                             <TextBox Margin="1"
-                                     Text="{TemplateBinding Text}"
+                                     Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      BorderThickness="0"
                                      Background="Transparent"
                                      VerticalAlignment="Center"
                                      Padding="5"
                                      Foreground="#CFCFCF"
-                                     x:Name="SearchBox"/>
+                                     x:Name="InnerSearchBox"/>
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="Search"
@@ -33,7 +33,7 @@
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                            <DataTrigger Binding="{Binding Text, ElementName=InnerSearchBox}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>
