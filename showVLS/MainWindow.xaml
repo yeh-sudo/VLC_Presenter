@@ -38,7 +38,7 @@
                 FontFamily="Fonts/#Poppins"
                 FontSize="22"
                 Foreground="White"
-                Text="VLS Presenter" />
+                Text="VLC Presenter" />
 
             <StackPanel Grid.Row="1">
 

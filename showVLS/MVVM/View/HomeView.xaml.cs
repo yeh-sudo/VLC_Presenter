@@ -3,6 +3,7 @@ using showVLS.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,10 +17,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace showVLS.MVVM.View {
+
     /// <summary>
     /// HomeView.xaml 的互動邏輯
     /// </summary>
     public partial class HomeView : UserControl {
+
+        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        public static extern IntPtr Create(string x, int len);
+
+        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        public static extern int getURLLen(IntPtr input);
+
+        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        public static extern void openURL(IntPtr input);
+
 
         private string SearchBoxText;
 
@@ -35,6 +47,19 @@ namespace showVLS.MVVM.View {
             GlobalClass tmp = new GlobalClass();
             tmp.History = SearchBoxText;
             MainViewModel.HistoryList.Add(tmp);
+
+            IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
+            openURL(input);
+            int len = getURLLen(input);
+            if (len == SearchBoxText.Length) {
+                GlobalClass tmp2 = new GlobalClass();
+                tmp2.History = "True";
+                MainViewModel.HistoryList.Add(tmp2);
+            } else {
+                GlobalClass tmp2 = new GlobalClass();
+                tmp2.History = "False";
+                MainViewModel.HistoryList.Add(tmp2);
+            }
         }
     }
 }
