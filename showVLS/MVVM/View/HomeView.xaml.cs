@@ -23,13 +23,13 @@ namespace showVLS.MVVM.View {
     /// </summary>
     public partial class HomeView : UserControl {
 
-        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll", CharSet =CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll", CharSet =CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Create(string x, int len);
 
-        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll")]
         public static extern int getURLLen(IntPtr input);
 
-        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll")]
         public static extern void openURL(IntPtr input);
 
 
