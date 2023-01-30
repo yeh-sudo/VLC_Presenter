@@ -23,7 +23,7 @@ namespace showVLS.MVVM.View {
     /// </summary>
     public partial class HomeView : UserControl {
 
-        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
+        [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll", CharSet =CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Create(string x, int len);
 
         [DllImport("C:\\Users\\yehch\\showVLS\\showVLS\\MyDll\\x64\\Debug\\MyDll.dll")]
@@ -50,16 +50,6 @@ namespace showVLS.MVVM.View {
 
             IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
             openURL(input);
-            int len = getURLLen(input);
-            if (len == SearchBoxText.Length) {
-                GlobalClass tmp2 = new GlobalClass();
-                tmp2.History = "True";
-                MainViewModel.HistoryList.Add(tmp2);
-            } else {
-                GlobalClass tmp2 = new GlobalClass();
-                tmp2.History = "False";
-                MainViewModel.HistoryList.Add(tmp2);
-            }
         }
     }
 }

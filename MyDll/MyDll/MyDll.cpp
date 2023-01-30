@@ -6,8 +6,10 @@
 using namespace std;
 using namespace cv;
 
-Input::Input(char* URL, int len) {
-	this->rtmpURL = URL;
+Input::Input(unsigned char* URL, int len) {
+	for (int i = 0; i < len; i++) {
+		this->rtmpURL += (char)URL[i];
+	}
 	this->len = len;
 }
 
@@ -16,11 +18,8 @@ int Input::getURLLen() {
 }
 
 void Input::openURL() {
-	string url(this->rtmpURL);
-
-	VideoCapture cap(url);
+	VideoCapture cap(this->rtmpURL);
 	if (!cap.isOpened()) {
-		this->len = 100;
 		return;
 	}
 
@@ -28,7 +27,7 @@ void Input::openURL() {
 	while (true) {
 		bool ret = cap.read(frame);
 		if (!ret) {
-			return;
+			break;
 		}
 		imshow("live", frame);
 
@@ -38,7 +37,7 @@ void Input::openURL() {
 	}
 }
 
-extern "C" __declspec(dllexport) void* Create(char* URL, int len) {
+extern "C" __declspec(dllexport) void* Create(unsigned char* URL, int len) {
 	return (void*) new Input(URL, len);
 }
 

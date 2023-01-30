@@ -2,10 +2,10 @@
 using namespace std;
 
 class Input {
-	char* rtmpURL;
+	string rtmpURL;
 	int len;
 public:
-	Input(char* URL, int len);
+	Input(unsigned char* URL, int len);
 	int getURLLen();
 	void openURL();
 };
