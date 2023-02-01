@@ -8,4 +8,5 @@ public:
 	Input(unsigned char* URL, int len);
 	int getURLLen();
 	void openURL();
+	void recordVideo();
 };

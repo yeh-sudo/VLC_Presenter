@@ -25,9 +25,19 @@
             x:Name="ShowButton"
             Width="80"
             Height="40"
-            Margin="0,0,0,-50"
+            Margin="150,0,0,-50"
             Click="ShowButton_Click"
             Content="Show"
+            Cursor="Hand"
+            FontSize="14"
+            Style="{StaticResource ShowButtonTheme}" />
+        <Button
+            x:Name="RecordButton"
+            Width="80"
+            Height="40"
+            Margin="-150,0,0,-50"
+            Click="RecordButton_Click"
+            Content="Record"
             Cursor="Hand"
             FontSize="14"
             Style="{StaticResource ShowButtonTheme}" />

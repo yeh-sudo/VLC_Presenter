@@ -32,6 +32,9 @@ namespace showVLS.MVVM.View {
         [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll")]
         public static extern void openURL(IntPtr input);
 
+        [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll")]
+        public static extern void recordVideo(IntPtr input);
+
 
         private string SearchBoxText;
 
@@ -50,6 +53,11 @@ namespace showVLS.MVVM.View {
 
             IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
             openURL(input);
+        }
+
+        private void RecordButton_Click(object sender, RoutedEventArgs e) {
+            IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
+            recordVideo(input);
         }
     }
 }
