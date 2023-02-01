@@ -49,14 +49,16 @@ void startRecord(string URL) {
 	}
 
 	string VideoPath = "C:\\Users\\yehch\\Videos\\";
-	int frame_width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
-	int frame_height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int frame_width = cap.get(CAP_PROP_FRAME_WIDTH);
+	int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
+	double fps = cap.get(CAP_PROP_FPS);
 
-	VideoWriter video(VideoPath + "record.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, Size(frame_width, frame_height));
+	VideoWriter video(VideoPath + "record.mp4", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), fps, Size(frame_width, frame_height));
 
 	Mat frame;
+	int total_frame = (int)fps * 30;
 	int cnt_frame = 0;
-	while (cnt_frame < 3000000) {
+	while (cnt_frame < total_frame) {
 		bool ret = cap.read(frame);
 		if (!ret) {
 			break;
