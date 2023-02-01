@@ -3,6 +3,7 @@
 #include "opencv2/opencv.hpp"
 #include <string>
 #include <ctime>
+#include <thread>
 
 using namespace std;
 using namespace cv;
@@ -41,8 +42,8 @@ void Input::openURL() {
 	destroyAllWindows();
 }
 
-void Input::recordVideo() {
-	VideoCapture cap(this->rtmpURL);
+void startRecord(string URL) {
+	VideoCapture cap(URL);
 	if (!cap.isOpened()) {
 		return;
 	}
@@ -54,18 +55,24 @@ void Input::recordVideo() {
 	VideoWriter video(VideoPath + "record.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, Size(frame_width, frame_height));
 
 	Mat frame;
-	time_t start = time(NULL);
-	time_t end = time(NULL);
-	while ((int)end - (int)start <= 30) {
+	int cnt_frame = 0;
+	while (cnt_frame < 3000000) {
 		bool ret = cap.read(frame);
 		if (!ret) {
 			break;
 		}
 		video.write(frame);
-		end = time(NULL);
+		cnt_frame++;
 	}
 	cap.release();
 	video.release();
+	return;
+}
+
+void Input::recordVideo() {
+	thread t(startRecord, this->rtmpURL);
+	t.detach();
+	return;
 }
 
 extern "C" __declspec(dllexport) void* Create(unsigned char* URL, int len) {

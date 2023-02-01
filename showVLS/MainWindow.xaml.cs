@@ -26,5 +26,11 @@ namespace showVLS {
         private void QuitButton_Click(object sender, RoutedEventArgs e) {
             App.Current.Shutdown();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e) {
+            if (e.LeftButton == MouseButtonState.Pressed) {
+                this.DragMove();
+            }
+        }
     }
 }

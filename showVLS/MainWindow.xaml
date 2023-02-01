@@ -10,6 +10,7 @@
     Height="600"
     AllowsTransparency="True"
     Background="Transparent"
+    MouseDown="Window_MouseDown"
     ResizeMode="NoResize"
     WindowStyle="None"
     mc:Ignorable="d">
