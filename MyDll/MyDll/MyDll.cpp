@@ -42,7 +42,7 @@ void Input::openURL() {
 	destroyAllWindows();
 }
 
-void startRecord(string URL) {
+void startRecord(string URL, int n) {
 	VideoCapture cap(URL);
 	if (!cap.isOpened()) {
 		return;
@@ -53,10 +53,10 @@ void startRecord(string URL) {
 	int frame_height = cap.get(CAP_PROP_FRAME_HEIGHT);
 	double fps = cap.get(CAP_PROP_FPS);
 
-	VideoWriter video(VideoPath + "record.mp4", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), fps, Size(frame_width, frame_height));
+	VideoWriter video(VideoPath + "record" + to_string(n) + ".mp4", cv::VideoWriter::fourcc('X', 'V', 'I', 'D'), fps, Size(frame_width, frame_height));
 
 	Mat frame;
-	int total_frame = (int)fps * 30;
+	int total_frame = (int)fps * 35;
 	int cnt_frame = 0;
 	while (cnt_frame < total_frame) {
 		bool ret = cap.read(frame);
@@ -71,8 +71,8 @@ void startRecord(string URL) {
 	return;
 }
 
-void Input::recordVideo() {
-	thread t(startRecord, this->rtmpURL);
+void Input::recordVideo(int n) {
+	thread t(startRecord, this->rtmpURL, n);
 	t.detach();
 	return;
 }
@@ -90,7 +90,7 @@ extern "C" __declspec(dllexport) void openURL(Input *input) {
 	return;
 }
 
-extern "C" __declspec(dllexport) void recordVideo(Input * input) {
-	input->recordVideo();
+extern "C" __declspec(dllexport) void recordVideo(Input * input, int n) {
+	input->recordVideo(n);
 	return;
 }

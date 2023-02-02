@@ -33,13 +33,15 @@ namespace showVLS.MVVM.View {
         public static extern void openURL(IntPtr input);
 
         [DllImport(@"..\..\..\..\MyDll\x64\Debug\MyDll.dll")]
-        public static extern void recordVideo(IntPtr input);
+        public static extern void recordVideo(IntPtr input, int n);
 
 
         private string SearchBoxText;
+        private int videoTag;
 
         public HomeView() {
             InitializeComponent();
+            videoTag = 0;
         }
 
         private void ShowButton_Click(object sender, RoutedEventArgs e) {
@@ -47,8 +49,9 @@ namespace showVLS.MVVM.View {
             if (SearchBoxText == "") {
                 return;
             }
-            GlobalClass tmp = new GlobalClass();
-            tmp.History = SearchBoxText;
+            GlobalClass tmp = new GlobalClass {
+                History = SearchBoxText
+            };
             MainViewModel.HistoryList.Add(tmp);
 
             IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
@@ -57,7 +60,8 @@ namespace showVLS.MVVM.View {
 
         private void RecordButton_Click(object sender, RoutedEventArgs e) {
             IntPtr input = Create(SearchBoxText, SearchBoxText.Length);
-            recordVideo(input);
+            recordVideo(input, videoTag);
+            videoTag++;
         }
     }
 }
